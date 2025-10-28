@@ -48,6 +48,7 @@ class AdminPanelProvider extends PanelProvider
                 'Blog',
             ])
             ->databaseNotifications()
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -67,8 +68,9 @@ class AdminPanelProvider extends PanelProvider
                     ->defaultLocales(['en', 'es', 'nl']),
             )
             ->spa()
-            ->colors([
-                'primary' => Color::Blue,
-            ]);
+            ->font('Poppins')
+            ->brandLogo(asset('images/guestnet-logo.png'))
+            ->darkModeBrandLogo(asset('images/guestnet-white-logo.png'))
+            ->brandName('GuestNet');
     }
 }
