@@ -4,6 +4,8 @@ use App\Providers\AppServiceProvider;
 use App\Providers\EventServiceProvider;
 use App\Providers\Filament\AdminPanelProvider;
 use App\Providers\Filament\AppPanelProvider;
+use App\Providers\Filament\GuestNetPanelProvider;
+use App\Providers\Filament\GvbPanelProvider;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\AuthServiceProvider;
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider;
@@ -242,6 +244,8 @@ return [
         AdminPanelProvider::class,
         AppPanelProvider::class,
         RouteServiceProvider::class,
+        GvbPanelProvider::class,
+        GuestNetPanelProvider::class,
 
     ],
 

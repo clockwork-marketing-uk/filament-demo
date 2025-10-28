@@ -3,6 +3,6 @@
 @source '../../../../app/Filament/**/*';
 @source '../../../../resources/views/filament/**/*';
 
-.fi-logo {
+img.fi-logo {
     @apply ml-0 h-12! w-auto!;
 }
