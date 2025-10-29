@@ -2,7 +2,7 @@
 
 namespace App\Support\Colors;
 
-class GiftVoucherBrillianceColor
+class GvbColor
 {
     public const Pink = [
         50 => 'oklch(0.959 0.021 358.78)',

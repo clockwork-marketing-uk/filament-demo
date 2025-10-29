@@ -13,7 +13,7 @@ use App\Support\Colors\ClockworkColor;
 use Filament\Widgets\FilamentInfoWidget;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\Cookie\Middleware\EncryptCookies;
-use App\Support\Colors\GiftVoucherBrillianceColor;
+use App\Support\Colors\GvbColor;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
@@ -76,8 +76,7 @@ class GvbPanelProvider extends PanelProvider
             ->brandName('GVB')
             ->topNavigation()
             ->colors([
-                'gray' => ClockworkColor::Blue,
-                'primary' => GiftVoucherBrillianceColor::Pink,
+                'primary' => GvbColor::Pink,
             ]);
     }
 }

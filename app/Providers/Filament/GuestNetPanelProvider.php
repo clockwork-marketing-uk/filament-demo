@@ -75,7 +75,6 @@ class GuestNetPanelProvider extends PanelProvider
             ->brandName('GuestNet')
             ->topNavigation()
             ->colors([
-                'gray' => ClockworkColor::Navy,
                 'primary' => ClockworkColor::Teal,
             ]);
     }
