@@ -2,22 +2,26 @@
 
 namespace App\Providers\Filament;
 
-use Filament\Http\Middleware\Authenticate;
-use Filament\Http\Middleware\AuthenticateSession;
-use Filament\Http\Middleware\DisableBladeIconComponents;
-use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Pages\Dashboard;
 use Filament\Panel;
 use Filament\PanelProvider;
+use App\Filament\Pages\Dashboard;
+use App\Filament\Pages\Auth\Login;
 use Filament\Support\Colors\Color;
 use Filament\Widgets\AccountWidget;
+use App\Http\Middleware\Authenticate;
+use App\Support\Colors\ClockworkColor;
 use Filament\Widgets\FilamentInfoWidget;
-use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
-use Illuminate\Cookie\Middleware\EncryptCookies;
-use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
-use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
+use Illuminate\Cookie\Middleware\EncryptCookies;
+use App\Support\Colors\GiftVoucherBrillianceColor;
+use Illuminate\Routing\Middleware\SubstituteBindings;
+use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Filament\Http\Middleware\DisableBladeIconComponents;
+use LaraZeus\SpatieTranslatable\SpatieTranslatablePlugin;
+use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse;
 
 class GvbPanelProvider extends PanelProvider
 {
@@ -26,19 +30,26 @@ class GvbPanelProvider extends PanelProvider
         return $panel
             ->id('gvb')
             ->path('gvb')
-            ->colors([
-                'primary' => Color::Amber,
-            ])
-            ->discoverResources(in: app_path('Filament/Gvb/Resources'), for: 'App\Filament\Gvb\Resources')
-            ->discoverPages(in: app_path('Filament/Gvb/Pages'), for: 'App\Filament\Gvb\Pages')
+            ->login(Login::class)
+            ->discoverClusters(in: app_path('Filament/Clusters'), for: 'App\\Filament\\Clusters')
+            ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
+            ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
                 Dashboard::class,
             ])
-            ->discoverWidgets(in: app_path('Filament/Gvb/Widgets'), for: 'App\Filament\Gvb\Widgets')
+            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 AccountWidget::class,
                 FilamentInfoWidget::class,
             ])
+            ->unsavedChangesAlerts()
+            ->brandLogoHeight('1.25rem')
+            ->navigationGroups([
+                'Shop',
+                'Blog',
+            ])
+            ->databaseNotifications()
+            ->viteTheme('resources/css/filament/admin/theme.css')
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
@@ -52,6 +63,21 @@ class GvbPanelProvider extends PanelProvider
             ])
             ->authMiddleware([
                 Authenticate::class,
+            ])
+            ->plugin(
+                SpatieTranslatablePlugin::make()
+                    ->defaultLocales(['en', 'es', 'nl']),
+            )
+            ->spa()
+            ->unsavedChangesAlerts()
+            ->font('Poppins')
+            ->brandLogo(asset('images/gvb-logo.png'))
+            ->darkModeBrandLogo(asset('images/gvb-white-logo.png'))
+            ->brandName('GVB')
+            ->topNavigation()
+            ->colors([
+                'gray' => ClockworkColor::Blue,
+                'primary' => GiftVoucherBrillianceColor::Pink,
             ]);
     }
 }

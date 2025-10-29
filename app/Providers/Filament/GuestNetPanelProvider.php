@@ -73,6 +73,7 @@ class GuestNetPanelProvider extends PanelProvider
             ->brandLogo(asset('images/guestnet-logo.png'))
             ->darkModeBrandLogo(asset('images/guestnet-white-logo.png'))
             ->brandName('GuestNet')
+            ->topNavigation()
             ->colors([
                 'gray' => ClockworkColor::Navy,
                 'primary' => ClockworkColor::Teal,
